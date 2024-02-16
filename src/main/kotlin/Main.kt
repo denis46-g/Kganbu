@@ -106,7 +106,11 @@ fun Kganbu(balls: Int, players: MutableList<String>) {
         if (old_size > players.size) {
             if (first_lose)
                 current_players = Pair(current_players.first % players.size, (current_players.first + 1) % players.size)
-            else current_players = Pair((current_players.first + 1) % players.size, (current_players.first + 2) % players.size)
+            else {
+                if (current_players.first != players.size)
+                    current_players = Pair((current_players.first + 1) % players.size, (current_players.first + 2) % players.size)
+                else current_players = Pair(0, 1)
+            }
             old_size = players.size
         }
         else {
